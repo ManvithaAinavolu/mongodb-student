@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoring Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="https://pbs.twimg.com/media/FBbMqNuWYAcsjsR.jpg" alt="Mentoring Hub Logo">
+    </div>
+    <h1 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Mentoring Hub</h1>
+
+<!-- <div id="username-container">  
+    <p>Welcome, <span id="username"></span></p>
+  </div> -->
+
+<nav>
+    <ul>
+        <li><a href="/home?username=${username}"><i class="fa fa-home" aria-hidden="true"></i>
+            Home</i></a></li>
+        <li><a href="/About"><i class="fa fa-address-book" aria-hidden="true"></i>
+            About</a></li>
+        <li><a href="/score"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+            Score Card</a></li>
+        <li><a href="/attendance"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+            Attendance</a></li>
+        <li><a href="/resume"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+            Resume Building</a></li>
+        <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>
+            Contact</a></li>
+    </ul>
+</nav>
+
+</header>
+    <main>
+        <img src="https://img.freepik.com/free-vector/college-university-students-group-young-happy-people-standing-isolated-white-background_575670-66.jpg">
+        <h3 class="first-txt">
+            A Mentor is someone
+             who allows you to
+            see the hope inside yourself.
+        </h3>
+        <div class="cards-container">
+            <div class="card">
+                 <h3>View Marks </h3>
+              <p>Student can view thier maks</p>
+            </div>
+            <div class="card">
+              <h3>View Attendance</h3>
+              <p>Attendance of students can be seen here</p>
+            </div>
+            <div class="card">
+              <h3>Notifications</h3>
+              <p>Stay updated with notifications</p>
+            </div>
+          </div>
+          <h2 class="lines">How to Use Our Website</h2>
+<marquee class="move" scrollamount="10">**Please follow the following instructions before using the website**</marquee>
+          <div class="guide">
+
+          <div class="website-guidelines">
+            <img src="data:image/jpeg;base64,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" alt="How to Use Our Website Image">
+           </div>
+           <div class="text">
+            <ol>
+                <li>Log in with your username and password to access your account.</li>
+                <li>On the home page, you can navigate to different sections such as "Score Card" and "Attendance" using the navigation menu.</li>
+                <li>In the "Score Card" section, you can view your marks and performance in various subjects.</li>
+                <li>In the "Attendance" section, you can check your attendance records for different classes.</li>
+                <li>For any questions or issues, please visit the "Contact" page to get in touch with our support team.</li>
+            </ol>
+        </div>
+        </div>
+    
+        <h2 class="comp">What We Build</h2>
+        <ul class="components-list">
+            <li>Clear Communication</li>
+            <ul class="subpoints">
+                <li>Mentors should listen and provide their full attention to the mentee.</li>
+            </ul>
+            <!-- Add an image related to Clear Communication -->
+            <img src="https://s39613.pcdn.co/wp-content/uploads/2022/10/happy-muslim-woman-talking-to-female-friend-while-studying-together-picture-id1372197923.jpg" alt="Clear Communication Image">
+    
+            <li>Trust and Confidentiality</li>
+            <ul class="subpoints">
+                <li>At the start, find out what issues are at the top of the mentee’s list. During the meeting pay attention to the emotion and energy of the mentee to determine what matters most to him or her.</li>
+            </ul>
+            <!-- Add an image related to Trust and Confidentiality -->
+            <img src="https://www.thoughtco.com/thmb/TBAvISS-bjpfaCm0FG7LLumHwok=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/teacher-helping-student-with-work-in-classroom-450123635-59249e145f9b58595077cb8e.jpg" alt="Trust and Confidentiality Image">
+    
+            <li>Goal Setting and Planning</li>
+            <ul class="subpoints">
+                <li>Paraphrase or repeat what the mentee says to confirm that your understanding is accurate.</li>
+            </ul>
+            <!-- Add an image related to Goal Setting and Planning -->
+            <img src="https://iteach.net/wp-content/uploads/new-female-teacher-teaching-students.jpg" alt="Goal Setting Image">
+    
+            <li>Feedback and Guidance</li>
+            <ul class="subpoints">
+                <li>Ask questions that call for a reflective response, not yes or no answers.</li>
+            </ul>
+            <!-- Add an image related to Feedback and Guidance -->
+            <img src="https://www.teacheracademy.eu/wp-content/uploads/2022/01/teachers-performace-scaled.jpg" alt="Feedback and Guidance Image">
+    
+            <li>Personalized Development</li>
+            <ul class="subpoints">
+                <li>If mentors have experiences related to the challenges faced by the mentee, it may be valuable to share this experience with the mentee.</li>
+            </ul>
+            <!-- Add an image related to Personalized Development -->
+            <img src="https://www.teacheracademy.eu/wp-content/uploads/2021/10/successful-teacher-1.jpg" alt="Personalized Development Image">
+        </ul>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-media">
+                <a href="https://www.facebook.com"><img src="facebook-icon.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com"><img src="instagram-icon.png" alt="Instagram"></a>
+                <a href="https://www.twitter.com"><img src="twitter-icon.png" alt="Twitter"></a>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <p>&copy; 2023 Mentoring Hub</p>
+    </footer>
+    
+    
+
+ 
+</body>
+<script> const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+    
+    if (username) {
+      document.getElementById('username').textContent = username;
+    }
+  
+    </script>
+</html>

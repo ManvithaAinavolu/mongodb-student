@@ -1,0 +1,147 @@
+
+// db.once('open', () => {
+//   console.log('Connected successfully to MongoDB');
+//   var collection=db.collection('marks')
+// var doc={"name":"lahari",age:20,marks:30}
+// collection.findOne({'name':'A'},function (err, document) {
+//     if (err) {
+//       console.log(err);
+//     } else if (document) {
+//       console.log('retrived',document); 
+//     } else {
+//       console.log('No documents found');
+//     }
+
+  
+//   });
+//   collection.updateOne({'name':'A'},{$set: {'marks':0}},function(err,res){
+//     if(err){
+//       console.log(err)
+//     }
+//     else{
+//       console.log('updated succesfllu',res);
+      
+//     }
+//     db.close()
+//   })
+// });
+// const userSchema = new mongoose.Schema({
+//   username: String,
+//   email: String,
+//   password: String,
+//   cpassword:String
+// });
+
+//const User = mongoose.model('User', userSchema);
+
+const Student = require('./student'); 
+
+
+app.post('/submit', async (req, res) => {
+  try {
+    const { subjectCode, studentName, assignments, midExam } = req.body;
+    const student = await Student.findOne({ username:studentName });
+
+    if (!student) {
+      res.status(404).json({ error: 'Student not found' });
+      return;
+    }
+
+    // Find the subject within the student's subjects array
+    const subjectIndex = student.subjects.findIndex(sub => sub.subjectCode === subjectCode);
+
+    if (subjectIndex !== -1) {
+      // Update the marks for the subject if it already exists
+      student.subjects[subjectIndex].marks = {
+        assignments,
+        midExam
+      };
+    } else {
+      // Add a new entry for the subject if it doesn't exist
+      student.subjects.push({
+        subjectCode,
+        marks: {
+          assignments,
+          midExam
+        }
+      });
+    }
+        await student.save();
+
+    res.json({ message: 'Marks updated successfully' });
+  } catch (error) {
+    console.error('Error submitting marks:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+app.get('/subjects', async (req, res) => {
+  try {
+    const subjects = await Subject.find({}, 'subjectCode subjectName');
+    res.header('Content-Type', 'application/json'); 
+    res.json(subjects);
+    console.log(subjects);
+  } catch (error) {
+    console.error('Error fetching subjects:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+app.get('/scores/:username', async (req, res) => {
+  try {
+    const { subjectCode } = req.query; // Use req.query for query parameters
+    const { username } = req.params; // Use req.params for route parameters
+
+    const student = await Student.findOne({ username });
+
+    if (!student) {
+      res.status(404).json({ error: 'Student not found' });
+      return;
+    }
+
+    const subject = student.subjects.find(sub => sub.subjectCode === subjectCode);
+
+    if (!subject) {
+      res.status(404).json({ error: 'Subject not found for this student' });
+      return;
+    }
+
+    res.json({
+      assignments: subject.marks.assignments,
+      midExam: subject.marks.midExam
+    });
+  } catch (error) {
+    console.error('Error fetching scores:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+<form id="userForm" method="POST" action="/users/signup" enctype="multipart/form-data">
+        <input type="text" id="username" name="username" placeholder="enter username" class="form-control">
+        <small id="user_error"></small>
+        <br/>
+        <input type="text" id="email" name="email" placeholder="enter email" class="form-control">
+        <small id="email_error"></small>
+        <br/>
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+          <option value="student">Student</option>
+          <option value="faculty">Faculty</option>
+        </select>
+        <br/>
+        <br/>
+        <label for="year">Choose year of study</label>
+        <select id="year" name="year" required>
+          <option value="1">1st year</option>
+          <option value="2">2nd year</option>
+          <option value="3">3rd year</option>
+          <option value="4">4th year</option>
+        </select>
+        <input type="password" id="password" name="password" placeholder="password" class="form-control">
+        <small id="pass_error"></small>
+        <br/>
+        <input type="password" id="cpassword" name="cpassword" placeholder="confirm password" class="form-control">
+        <small id="cpass_error"></small>
+        <label>Choose your Profile</label>
+        <input type="file" name="image" id="image" accept="image/*" required>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+      </form>

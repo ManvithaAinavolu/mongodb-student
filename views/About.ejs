@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Mentoring Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/about.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="https://pbs.twimg.com/media/FBbMqNuWYAcsjsR.jpg" alt="Mentoring Hub Logo">
+    </div>
+    <h1 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Mentoring Hub</h1>
+
+  <div id="username-container">
+    <p>Welcome, <span id="username"></span></p>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/home?username=${username}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+      <li><a href="/about"><i class="fa fa-address-book" aria-hidden="true"></i> About</a></li>
+      <li><a href="/score"><i class="fa fa-bar-chart" aria-hidden="true"></i> Score Card</a></li>
+      <li><a href="/attendance"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Attendance</a></li>
+      <li><a href="#"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Resume Building</a></li>
+      <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Contact</a></li>
+    </ul>
+
+  </nav>
+</header>
+  <main>
+    <h2>About Mentoring Hub</h2>
+                  
+    <p style="font-weight: bold;font-size: 35px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" class="q">
+        What is Mentoring?
+    </p>
+    <div class="con mentoring-info menotring-info-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrBgTfslA8mb5rO_j6v3mEQgIR2Zq3s3kebfFAd7GU5ooFY3y1-01Bq_L0pSolml0TCgc&usqp=CAU">
+        <p class="text">
+            Mentoring is a reciprocal and collaborative at-will relationship that most often occurs between a senior and junior employee for the purpose of the mentee’s growth, learning, and career development. Often the mentor and mentee are internal to an organization, and there is an emphasis on organizational goals, culture, career goals, advice on professional development, and work-life balance. Effective mentors often act as role models and sounding boards for their mentee and provide guidance to help them reach their goals.
+        </p>
+    </div>
+    
+    <p>Welcome to Mentoring Hub, your platform for fostering mentorship and growth in the academic world. Our mission is to provide a nurturing environment where students can excel in their studies, and faculty members can guide and support their development.</p>
+    <h3>Our Vision</h3>
+    <p>At Mentoring Hub, we envision a future where every student has access to valuable mentorship, personalized learning experiences, and the tools they need to succeed in their academic journey.</p>
+    <h3>What We Offer</h3>
+    <ul>
+      <li><strong>View Marks:</strong> Students can easily access their academic performance records, helping them track their progress.</li>
+      <li><strong>View Attendance:</strong> Keep track of attendance records to ensure you're always up to date with your class attendance.</li>
+      <li><strong>Notifications:</strong> Stay informed and connected with important updates and notifications relevant to your academic journey.</li>
+      <li><strong>Resume Building:</strong> Learn and build the skills needed to create a standout resume that sets you on the path to success.</li>
+    </ul>
+    <h3>Why Mentorship Matters</h3>
+    <p>Mentorship is at the heart of our platform. It's a reciprocal relationship that empowers students to unlock their potential by connecting with experienced faculty members. Mentors offer guidance, share their knowledge, and provide valuable insights to help students thrive in their academic and professional lives.</p>
+    <h3>Contact Us</h3>
+    <p>If you have any questions, feedback, or inquiries, please don't hesitate to <a href="/contact">contact us</a>. We're here to support you in your educational journey.</p>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="social-media">
+        <a href="https://www.facebook.com"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com"><img src="instagram-icon.png" alt="Instagram"></a>
+        <a href="https://www.twitter.com"><img src="twitter-icon.png" alt="Twitter"></a>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <p>&copy; 2023 Mentoring Hub</p>
+  </footer>
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+
+    if (username) {
+      document.getElementById('username').textContent = username;
+    }
+  </script>
+</body>
+</html>

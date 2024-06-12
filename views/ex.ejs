@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Dynamic Schema</title>
+  <link rel="stylesheet" type="text/css" href="css/marks.css">
+</head>
+<body>
+  <h1>Create Dynamic Schema</h1>
+  <form id="schema-form">
+    <label for="schema-name">Schema Name:</label>
+    <input type="text" id="schema-name" required><br><br>
+
+    <div id="fields-container">
+      <label for="field-name">Field Name:</label>
+      <input type="text" id="field-name" required>
+      <label for="data-type">Data Type:</label>
+      <input type="text" id="data-type" required>
+      <button type="button" id="add-field">Add Field</button>
+    </div>
+
+    <button type="submit">Create Schema</button>
+  </form>
+
+  <!-- Schema Configurations -->
+  <h1>Schema Configurations</h1>
+  <ul id="schema-list-ul"></ul>
+  <table border="1" id="schema-list-table">
+    <thead>
+      <tr>
+        <th>Schema Name</th>
+        <th>Fields</th>
+      </tr>
+    </thead>
+    <tbody id="schema-list-tbody"></tbody>
+  </table>
+
+  <!-- Display selected schema attributes -->
+  <h1>Selected Schema Attributes</h1>
+  <ul id="selected-schema-ul"></ul>
+  <table border="1" id="selected-schema-table">
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Data Type</th>
+      </tr>
+    </thead>
+    <tbody id="selected-schema-tbody"></tbody>
+  </table>
+  <label for="choose-schema">Choose a Schema:</label>
+  <select id="choose-schema"></select>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const schemaForm = document.getElementById('schema-form');
+      const fieldsContainer = document.getElementById('fields-container');
+      const schemaListUl = document.getElementById('schema-list-ul');
+      const schemaListTable = document.getElementById('schema-list-table');
+      const schemaListTbody = document.getElementById('schema-list-tbody');
+      const selectedSchemaUl = document.getElementById('selected-schema-ul');
+      const selectedSchemaTable = document.getElementById('selected-schema-table');
+      const selectedSchemaTbody = document.getElementById('selected-schema-tbody');
+      const schemas = [];
+      const chooseSchemaSelect = document.getElementById('choose-schema');
+
+      function addFieldInput() {
+        const fieldRow = document.createElement('div');
+        fieldRow.innerHTML = `
+          <label for="field-name">Field Name:</label>
+          <input type="text" id="field-name" required>
+          <label for="data-type">Data Type:</label>
+          <input type="text" id="data-type" required>
+        `;
+        fieldsContainer.appendChild(fieldRow);
+      }
+
+      function populateSelect() {
+        chooseSchemaSelect.innerHTML = '<option value="">Select a Schema</option>';
+        schemas.forEach((schema) => {
+          const option = document.createElement('option');
+          option.value = schema.name;
+          option.textContent = schema.name;
+          chooseSchemaSelect.appendChild(option);
+        });
+      }
+
+      document.getElementById('add-field').addEventListener('click', () => {
+        addFieldInput();
+      });
+
+      schemaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const schemaName = document.getElementById('schema-name').value;
+        const fields = [];
+        const fieldElements = fieldsContainer.querySelectorAll('div');
+        fieldElements.forEach((fieldElement) => {
+          const fieldName = fieldElement.querySelector('#field-name').value;
+          const dataType = fieldElement.querySelector('#data-type').value;
+
+          if (fieldName && dataType) {
+            fields.push({ name: fieldName, dataType });
+          }
+        });
+
+        if (schemaName && fields.length > 0) {
+          fetch('/create-schema', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: schemaName,
+              fields,
+            }),
+          })
+            .then((response) => response.text())
+            .then((message) => {
+              alert(message);
+              fields.length = 0;
+              fieldsContainer.innerHTML = '';
+              document.getElementById('schema-name').value = ''; // Clear schema name input
+              loadSchemaConfigurations();
+            })
+            .catch((error) => {
+              console.error(error);
+              alert('Error creating schema configuration');
+            });
+        }
+      });
+
+      function loadSchemaConfigurations() {
+        fetch('/get-schemas') // Add a new route to get all schemas
+          .then((response) => response.json())
+          .then((data) => {
+            schemas.length = 0;
+            schemas.push(...data); 
+            populateSelect(); 
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('Error fetching schema configurations');
+          });
+
+        schemaListUl.innerHTML = '';
+        schemaListTbody.innerHTML = '';
+
+        schemas.forEach((schema) => {
+          // For the list
+          const listItem = document.createElement('li');
+          listItem.textContent = schema.name;
+          listItem.addEventListener('click', () => {
+            // When a schema name is clicked, fetch its details
+            fetch(`/get-schema/${schema.name}`)
+              .then((response) => response.json())
+              .then((data) => {
+                // Display the selected schema's attributes
+                displaySelectedSchema(data.name, data.fields);
+              })
+              .catch((error) => {
+                console.error(error);
+                alert('Error fetching schema details');
+              });
+          });
+          schemaListUl.appendChild(listItem);
+
+          // For the table
+          const row = schemaListTbody.insertRow();
+          const nameCell = row.insertCell(0);
+          const fieldsCell = row.insertCell(1);
+          nameCell.textContent = schema.name;
+
+          // Format fields as a string for display
+          const fieldNames = schema.fields.map((field) => `${field.name} (${field.dataType})`).join(', ');
+          fieldsCell.textContent = fieldNames;
+        });
+      }
+
+      // Function to display selected schema's attributes
+      function displaySelectedSchema(schemaName, fields) {
+        selectedSchemaUl.innerHTML = '';
+        selectedSchemaTbody.innerHTML = '';
+
+        const selectedListItem = document.createElement('li');
+        selectedListItem.textContent = `Selected Schema: ${schemaName}`;
+        selectedSchemaUl.appendChild(selectedListItem);
+
+        fields.forEach((field) => {
+          const row = selectedSchemaTbody.insertRow();
+          const nameCell = row.insertCell(0);
+          const dataTypeCell = row.insertCell(1);
+          nameCell.textContent = field.name;
+          dataTypeCell.textContent = field.dataType;
+        });
+      }
+
+      loadSchemaConfigurations();
+    });
+  </script>
+</body>
+</html>

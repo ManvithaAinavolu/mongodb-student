@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Marks Entry</title>
+    <!-- <link rel="stylesheet" href="css/marks-entry.css"> -->
+</head>
+<body>
+    <header>
+        <h1>Faculty Marks Entry</h1>
+    </header>
+
+    <div class="container">
+        <form id="marks-form">
+            <label for="subjectCode">Select a Subject:</label>
+            <select id="subjectCode" name="subjectCode" onchange="loadStudents()">
+                <option value="" disabled selected>Select a subject</option>
+                <!-- Populate this dropdown with available subjects -->
+            </select>
+            <div id="subjectDetails">
+
+            </div>
+          <label for="studentName">Select a Student:</label>
+
+          <input type="text" id="studentName" name="studentName">
+<!-- <select id="studentName" name="studentName">
+    <option value=""  disabled selected>Select a student</option>
+</select> -->
+
+            <label for="assignments">Assignments Score:</label>
+            <input type="number" id="assignments" name="assignments" min="0" max="100" required>
+
+            <label for="midExam">Mid Exam Score:</label>
+            <input type="number" id="midExam" name="midExam" min="0" max="100" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="js/marks.js"></script>
+</body>
+</html>

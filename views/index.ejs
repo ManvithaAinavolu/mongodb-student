@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 shadow-lg p-3 mb-5 bg-white rounded">
+            <h1>SIGNUP</h1>
+            <form method="POST" id="userForm" action="/users/signup" enctype="multipart/form-data" >
+                <input type="text" id="username" name="username" placeholder="enter username" class="form-control">
+                <small id="user_error"></small>
+                <br/>
+                <input type="text" id="email" name="email" placeholder="enter email" class="form-control">
+                <small id="email_error"></small>
+                <br/>
+                <input type="password" id="password" name="password" placeholder="password" class="form-control">
+                <small id="pass_error"></small>
+                <br/>
+                <input type="password" id="cpassword" name="cpassword" placeholder="confirm password"
+                       class="form-control">
+                <small id="cpass_error"></small>
+                <input type="file" name="image" id="image" accept="image/*" required>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+   
+<input type="text" id="readUsername" placeholder="Enter username">
+<button id="readButton">Fetch User Details</button>
+<input type="text" id="deleteUsername" placeholder="Enter username">
+<button id="deleteButton">Delete User Details</button>
+<div id="deleted"></div>
+<div id="userDetails">
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Profile Image</th>
+    </tr>
+    <tr>
+     
+     <td id="image">        <h1>User Details</h1>
+      <div id="userDetails"></div>
+      <td id="usernameValue"></td>
+      <td id="emailValue"></td>
+      <td id="passwordValue"></td>
+      <img id="image" src="" alt="User Image">
+
+     </td>
+    </tr>
+  </table>
+</div>
+
+    </div>
+</div>
+
+
+<form id="updateForm">
+  <label for="updateUsername">Username:</label>
+  <input type="text" id="updateUsername" name="updateUsername" required><br><br>
+  <button type="button" id="fetchUserButton">Fetch User Data</button><br><br>
+  <label for="updatedEmail">Updated Email:</label>
+  <input type="email" id="updatedEmail" name="updatedEmail" required><br><br>
+
+  <label for="updatedPassword">Updated Password:</label>
+  <input type="password" id="updatedPassword" name="updatedPassword" required><br><br>
+
+  <label for="updatedCPassword">Confirm Updated Password:</label>
+  <input type="password" id="updatedCPassword" name="updatedCPassword" required><br><br>
+
+  
+  <button type="submit" id="updateButton" style="display: none;">Update User</button>
+</form>
+
+
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>

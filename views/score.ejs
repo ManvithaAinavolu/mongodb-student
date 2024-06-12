@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Scorecard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/score.css">
+</head>
+<body>
+    <div id="username-container">
+   
+        <h2>Welcome, <span id="username"></span></h2>
+      </div>
+    <nav>
+        <ul>
+            <li><a href="/h"><i class="fa fa-home" aria-hidden="true"></i>
+                Home</i></a></li>
+            <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i>
+                About</a></li>
+            <li><a href="/score"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+                Score Card</a></li>
+            <li><a href="/attendance"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                Attendance</a></li>
+            <li><a href="#"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                Resume Building</a></li>
+            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>
+                Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Student Scorecard</h1>
+    </header>
+
+    <div class="container">
+        <h1>Scorecard</h1>
+    <label for="subjectDropdown">Select a Subject:</label>
+    <select id="subjectDropdown">
+        <option value="" disabled selected>Select a subject</option>
+    </select>
+    <div id="subjectDetails">
+       
+    </div>
+        <section class="score-section">
+            <h3>Your Scores</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Mid Exam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="assignment-score"></td>
+                        <td id="mid-exam-score"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script type="text/javascript" src="js/score.js"></script>
+</body>
+</html>

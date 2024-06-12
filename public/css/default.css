@@ -1,0 +1,72 @@
+/* Reset some default styles */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for the landing page container */
+.landing {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background image styles */
+.landing img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+ .landing-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size:290px;
+}
+.logo img {
+    width: 80px; 
+    height: auto;
+    place-items: center;
+    margin-top:400px;
+    margin-left:300px;
+    width:160px;
+    height: 160px;
+    border-radius: 2rem;
+  }
+
+.landing-content h1 {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.landing-content p {
+    font-size: 38px;
+    padding:10px 15px;
+    margin-bottom: 30px;
+}
+
+/* Button styles */
+.buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.buttons a:hover {
+    background-color: #2980b9;
+}

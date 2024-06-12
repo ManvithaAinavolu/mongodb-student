@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/att.css">
+    <title>Student Attendance</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/home?username=${username}"><i class="fa fa-home" aria-hidden="true"></i>
+                Home</i></a></li>
+            <li><a href="/About"><i class="fa fa-address-book" aria-hidden="true"></i>
+                About</a></li>
+            <li><a href="/score"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+                Score Card</a></li>
+            <li><a href="/attendance"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                Attendance</a></li>
+            <li><a href="/resume"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                Resume Building</a></li>
+            <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>
+                Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Student Attendance</h1>
+    </header>
+    <main>
+        <div class="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <button onclick="displayAttendance()">Display Attendance</button>
+        </div>
+        <div id="attendance-result">
+            <!-- Attendance data will be displayed here -->
+        </div>
+    </main>
+    <script type="text/javascript" src="js/att.js"></script>
+</body>
+</html>
